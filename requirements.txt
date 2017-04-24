@@ -1,0 +1,4 @@
+plotnine
+scikit-misc
+sklearn
+jupyter
