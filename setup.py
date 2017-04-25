@@ -5,7 +5,7 @@ __email__ = 'has2k1@gmail.com'
 __description__ = "Usage examples for plotnine"
 __license__ = 'BSD (3-clause)'
 __url__ = 'https://github.com/has2k1/plotnine-examples'
-__version__ = '0.0.1'
+__version__ = '0.0.2'
 
 
 def check_dependencies():
@@ -50,7 +50,7 @@ def get_package_data():
         - And include any *.msg files found in
           the 'hello' package, too:
     """
-    notebooks = ['plotnine_examples/notebooks/*.ipynb']
+    notebooks = ['notebooks/*.ipynb']
     package_data = {'plotnine_examples': notebooks}
     return package_data
 
@@ -70,7 +70,6 @@ if __name__ == '__main__':
           extras_require=get_extra_packages(),
           packages=find_packages(),
           package_data=get_package_data(),
-          include_package_data=True,
           classifiers=['Intended Audience :: Science/Research',
                        'License :: OSI Approved :: BSD License',
                        'Operating System :: Microsoft :: Windows',
