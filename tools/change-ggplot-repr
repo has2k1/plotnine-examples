@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+# Filter to change the value of the ggplot objects repr string
+# so that it does not mess with versioning.
+cat $1 | \
+  sed -E 's/<ggplot: \(-?\w+\)>/<ggplot: (97654321012345679)>/g' | \
+  sed -E 's/<matplotlib\.figure\.Figure at 0x\w+>/<matplotlib.figure.Figure at 0x15af0166ab90b4f>/g'
