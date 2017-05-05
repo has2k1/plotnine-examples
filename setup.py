@@ -5,7 +5,7 @@ __email__ = 'has2k1@gmail.com'
 __description__ = "Usage examples for plotnine"
 __license__ = 'BSD (3-clause)'
 __url__ = 'https://github.com/has2k1/plotnine-examples'
-__version__ = '0.0.3'
+__version__ = '0.0.4'
 
 
 def check_dependencies():
