@@ -1,4 +1,4 @@
-.PHONY: clean notebooks
+.PHONY: clean examples tutorials
 
 clean: clean-pyc clean-build
 
@@ -15,12 +15,18 @@ clean-build:
 	find . -name '*.egg-info' -exec rm -fr {} +
 	find . -name '*.egg' -exec rm -f {} +
 
-notebooks:
-	cd plotnine_examples/notebooks; \
+examples:
+	export PYTHONWARNINGS="ignore::FutureWarning::,ignore::DeprecationWarning::"; \
+	cd plotnine_examples/examples; \
 	for file in *.ipynb; do \
 	   jupyter nbconvert --to notebook --execute "$${file}" --output "$${file}"; \
 	done
 
-release: clean
-	python setup.py sdist bdist_wheel
-	twine upload dist/*
+tutorials:
+	export PYTHONWARNINGS="ignore::FutureWarning::,ignore::DeprecationWarning::"; \
+	cd plotnine_examples/tutorials; \
+	for file in *.ipynb; do \
+	   jupyter nbconvert --to notebook --execute "$${file}" --output "$${file}"; \
+	done
+
+all_notebooks: examples tutorials
