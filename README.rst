@@ -65,8 +65,8 @@ by a ``*Short Description*`` (emphasis) directly beneath. The last image of
 each of these sections in is selected and put in the gallery. Avoid creating
 ``#`` or ``##`` sections.
 
-See [geom_tile.ipynb](plotnine_examples/notebooks/geom_tile.ipynb)
+See `geom_tile.ipynb <plotnine_examples/examples/geom_tile.ipynb>`_
 
 .. _plotnine: https://github.com/has2k1/plotnine
 .. _documentation: https://plotnine.readthedocs.io/en/latest/
-.. _gallery: https://plotnine.readthedocs.io/en/latest/gallery
+.. _gallery: https://plotnine.readthedocs.io/en/latest/gallery.html
