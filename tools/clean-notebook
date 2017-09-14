@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+
+# Filter to change the value of the ggplot objects repr string
+# so that it does not mess with versioning.
+change_ggplot_repr() {
+  cat $1 | \
+    sed -E 's/<ggplot: \(-?\w+\)>/<ggplot: (97654321012345679)>/g' | \
+    sed -E 's/<matplotlib\.figure\.Figure at 0x\w+>/<matplotlib.figure.Figure at 0x15af0166ab90b4f>/g'
+}
+
+# Filter to change the value of the ggplot objects repr string
+# so that it does not mess with versioning.
+# Filter to change the paths displayed in error and warning messages
+# 1st path is the system path
+# 2nd path is the package path
+# 3rd path (we do not deal with the less likely case of another
+#           development-installed package displaying a message)
+change_error_path() {
+  cat $1 | \
+    sed -E "s|\"(/.+?)(site-packages/.+?\.py:[0-9]+:\s)|\"/user/path/lib/python/\2|g" | \
+    sed -E "s|\"(/.+?)(plotnine/.+?\.py:[0-9]+:\s)|\"/user/path/\2|g"
+}
+
+
+cat $1 | \
+  change_ggplot_repr | \
+  change_error_path
+
+

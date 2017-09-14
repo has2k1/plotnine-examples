@@ -1,1 +1,1 @@
-*.ipynb  filter=change-ggplot-repr
+*.ipynb  filter=clean-notebooks
