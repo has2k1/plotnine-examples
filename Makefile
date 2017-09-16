@@ -29,4 +29,15 @@ tutorials:
 	   jupyter nbconvert --to notebook --execute "$${file}" --output "$${file}"; \
 	done
 
-all_notebooks: examples tutorials
+changes:
+	export PYTHONWARNINGS="ignore::FutureWarning::,ignore::DeprecationWarning::"; \
+	files=$$(git status --porcelain | grep -E '\.ipynb$$' | sed s/^...//); \
+	for path in $$files; do \
+	   DIR=$$(dirname "$${path}"); \
+	   file=$$(basename "$${path}"); \
+	   pushd $$DIR; \
+	   jupyter nbconvert --to notebook --execute "$${file}" --output "$${file}"; \
+	   popd; \
+	done
+
+all: examples tutorials
