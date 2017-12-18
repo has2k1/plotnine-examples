@@ -26,28 +26,17 @@ Contributing
 
 2. Create a notebook or edit an existing notebook. The name of the
    notebook should match the object. e.g if examples are for `geom_tile`
-   the name should be `geom_tile.ipynb`. Execute the notebook once, top
-   to bottom).
+   the name should be `geom_tile.ipynb`.
 
-   Add your github username and/or name to `contributors.txt`
+3. Execute the notebook once, top to bottom OR preferably if you can (Linux/OSX)
+   run `make changes` from the command line.
+
+4. Add your github username and/or name to `contributors.txt`
    (sorted according to the username) and commit.
 
-   If you can (possible linux or OSX), run the notebook through a filter
-   do a little clean up:
+5. Commit
 
-   .. code-block:: console
-
-      # Either
-      echo geom_tile.ipynb | tools/change-ggplot-repr > geom_tile.ipynb
-
-      # Or, let git do it for you automatically
-      git config filter.change-ggplot-repr.clean tools/change-ggplot-repr
-
-   If you are unable to, no worries.
-
-3. Commit
-
-4. Push
+6. Push
 
    .. code-block:: console
 
