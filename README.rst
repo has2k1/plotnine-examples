@@ -25,13 +25,13 @@ Contributing
       git pull
 
 2. Create a notebook or edit an existing notebook. The name of the
-   notebook should match the object. e.g if examples are for `geom_tile`
-   the name should be `geom_tile.ipynb`.
+   notebook should match the object. e.g if examples are for ``geom_tile``
+   the name should be ``geom_tile.ipynb``.
 
 3. Execute the notebook once, top to bottom OR preferably if you can (Linux/OSX)
-   run `make changes` from the command line.
+   run ``make changes`` from the command line.
 
-4. Add your github username and/or name to `contributors.txt`
+4. Add your github username and/or name to ``contributors.txt``
    (sorted according to the username) and commit.
 
 5. Commit
