@@ -21,7 +21,7 @@ examples:
 	cd plotnine_examples/examples; \
 	for file in *.ipynb; do \
 	   jupyter nbconvert --to notebook --execute "$${file}" --output "$${file}"; \
-	   $$clean_notebook "$${file}" > "$${file}"; \
+	   $$clean_notebook "$${file}" > "$${file}.$$$$" && mv "$${file}.$$$$" "$${file}"; \
 	done
 
 tutorials:
@@ -30,7 +30,7 @@ tutorials:
 	cd plotnine_examples/tutorials; \
 	for file in *.ipynb; do \
 	   jupyter nbconvert --to notebook --execute "$${file}" --output "$${file}"; \
-	   $$clean_notebook "$${file}" > "$${file}"; \
+	   $$clean_notebook "$${file}" > "$${file}.$$$$" && mv "$${file}.$$$$" "$${file}"; \
 	done
 
 changes:
@@ -42,7 +42,7 @@ changes:
 	   file=$$(basename "$${path}"); \
 	   pushd $$DIR; \
 	   jupyter nbconvert --to notebook --execute "$${file}" --output "$${file}"; \
-	   $$clean_notebook "$${file}" > "$${file}"; \
+	   $$clean_notebook "$${file}" > "$${file}.$$$$" && mv "$${file}.$$$$" "$${file}"; \
 	   popd; \
 	done
 
