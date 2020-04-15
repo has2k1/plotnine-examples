@@ -1,3 +1,5 @@
+SHELL := /bin/bash
+
 .PHONY: clean examples tutorials
 
 clean: clean-pyc clean-build
