@@ -31,6 +31,7 @@ tutorials:
 	clean_notebook=$$(git rev-parse --show-toplevel)/tools/clean-notebook; \
 	cd plotnine_examples/tutorials; \
 	for file in *.ipynb; do \
+	   [[ "$${file}" =~ pyqt ]] && continue; \
 	   jupyter nbconvert --to notebook --execute "$${file}" --output "$${file}"; \
 	   $$clean_notebook "$${file}" > "$${file}.$$$$" && mv "$${file}.$$$$" "$${file}"; \
 	done
