@@ -50,8 +50,12 @@ def get_package_data():
         - And include any *.msg files found in
           the 'hello' package, too:
     """
-    notebooks = ['examples/*.ipynb', 'examples/data/*.csv',
-                 'tutorials/*.ipynb']
+    notebooks = [
+        'examples/*.ipynb',
+        'examples/data/*.csv',
+        'tutorials/*.ipynb',
+        'tutorials/images/*.png'
+    ]
     package_data = {'plotnine_examples': notebooks}
     return package_data
 
