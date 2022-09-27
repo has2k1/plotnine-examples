@@ -23,6 +23,9 @@ examples:
 	cd plotnine_examples/examples; \
 	for file in *.ipynb; do \
 	   jupyter nbconvert --to notebook --execute "$${file}" --output "$${file}"; \
+	   if [[ "$$?" != "0" ]]; then \
+	       echo "$$(tput setaf 1)$${file}$$(tput sgr0)"; \
+	   fi; \
 	   $$clean_notebook "$${file}" > "$${file}.$$$$" && mv "$${file}.$$$$" "$${file}"; \
 	done
 
@@ -33,6 +36,9 @@ tutorials:
 	for file in *.ipynb; do \
 	   [[ "$${file}" =~ pyqt ]] && continue; \
 	   jupyter nbconvert --to notebook --execute "$${file}" --output "$${file}"; \
+	   if [[ "$$?" != "0" ]]; then \
+	       echo "$$(tput setaf 1)$${file}$$(tput sgr0)"; \
+	   fi; \
 	   $$clean_notebook "$${file}" > "$${file}.$$$$" && mv "$${file}.$$$$" "$${file}"; \
 	done
 
@@ -45,6 +51,9 @@ changes:
 	   file=$$(basename "$${path}"); \
 	   pushd $$DIR; \
 	   jupyter nbconvert --to notebook --execute "$${file}" --output "$${file}"; \
+	   if [[ "$$?" != "0" ]]; then \
+	       echo "$$(tput setaf 1)$${file}$$(tput sgr0)"; \
+	   fi; \
 	   $$clean_notebook "$${file}" > "$${file}.$$$$" && mv "$${file}.$$$$" "$${file}"; \
 	   popd; \
 	done
