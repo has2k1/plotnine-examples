@@ -1,0 +1,45 @@
+########## Project ##########
+[project]
+name = "plotnine_examples"
+description = "Usage examples for plotnine"
+license = {file = "LICENSE"}
+authors = [
+  {name = "Hassan Kibirige", email = "has2k1@gmail.com"},
+]
+version = "0.0.5"
+readme = "README.md"
+classifiers = [
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: BSC License",
+    "Operating System :: Microsoft :: Windows",
+    "Operating System :: Unix",
+    "Operating System :: MacOS",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11"
+]
+
+dependencies = []
+requires-python = ">=3.8"
+
+
+
+[project.urls]
+repository = "https://github.com/has2k1/plotnine-examples"
+
+########## Build System ##########
+# Reference https://github.com/pydata/xarray/blob/main/pyproject.toml
+[build-system]
+requires = [
+    "setuptools>=59",
+    "wheel",
+]
+build-backend = "setuptools.build_meta"
+
+########## Tool - Setuptools ##########
+# If you only specify the top-level package (=plotnine-examples) setuptools complains
+# about not listing the sub-packages. Since we want every sub-package in the
+# plotnine package, it is easier to use find directive.
+[tool.setuptools.packages.find]
+include = ["plotnine_examples*"]
