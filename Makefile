@@ -18,11 +18,12 @@ clean-build:
 	find . -name '*.egg' -exec rm -f {} +
 
 examples:
+	export PYDEVD_DISABLE_FILE_VALIDATION=1; \
 	export PYTHONWARNINGS="ignore::FutureWarning::,ignore::DeprecationWarning::"; \
 	clean_notebook=$$(git rev-parse --show-toplevel)/tools/clean-notebook; \
 	cd plotnine_examples/examples; \
 	for file in *.ipynb; do \
-	   jupyter nbconvert --to notebook --execute "$${file}" --output "$${file}"; \
+	   python -Xfrozen_modules=off -m jupyter nbconvert --to notebook --inplace --execute "$${file}"; \
 	   if [[ "$$?" != "0" ]]; then \
 	       echo "$$(tput setaf 1)$${file}$$(tput sgr0)"; \
 	   fi; \
@@ -30,12 +31,13 @@ examples:
 	done
 
 tutorials:
+	export PYDEVD_DISABLE_FILE_VALIDATION=1; \
 	export PYTHONWARNINGS="ignore::FutureWarning::,ignore::DeprecationWarning::"; \
 	clean_notebook=$$(git rev-parse --show-toplevel)/tools/clean-notebook; \
 	cd plotnine_examples/tutorials; \
 	for file in *.ipynb; do \
 	   [[ "$${file}" =~ pyqt ]] && continue; \
-	   jupyter nbconvert --to notebook --execute "$${file}" --output "$${file}"; \
+	   python -Xfrozen_modules=off -m jupyter nbconvert --to notebook --inplace --execute "$${file}"; \
 	   if [[ "$$?" != "0" ]]; then \
 	       echo "$$(tput setaf 1)$${file}$$(tput sgr0)"; \
 	   fi; \
@@ -43,6 +45,7 @@ tutorials:
 	done
 
 changes:
+	export PYDEVD_DISABLE_FILE_VALIDATION=1; \
 	export PYTHONWARNINGS="ignore::FutureWarning::,ignore::DeprecationWarning::"; \
 	clean_notebook=$$(git rev-parse --show-toplevel)/tools/clean-notebook; \
 	files=$$(git status --porcelain | grep -E '\.ipynb$$' | sed s/^...//); \
@@ -50,7 +53,7 @@ changes:
 	   DIR=$$(dirname "$${path}"); \
 	   file=$$(basename "$${path}"); \
 	   pushd $$DIR; \
-	   jupyter nbconvert --to notebook --execute "$${file}" --output "$${file}"; \
+	   python -Xfrozen_modules=off -m jupyter nbconvert --to notebook --inplace --execute "$${file}"; \
 	   if [[ "$$?" != "0" ]]; then \
 	       echo "$$(tput setaf 1)$${file}$$(tput sgr0)"; \
 	   fi; \
