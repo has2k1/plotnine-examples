@@ -23,3 +23,6 @@ var/
 
 # jupyter
 .ipynb_checkpoints/
+
+# MacOS Finder Meta Data
+**/.DS_Store
