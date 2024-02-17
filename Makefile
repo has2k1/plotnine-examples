@@ -1,8 +1,26 @@
+.PHONY: help Makefile
+.DEFAULT_GOAL := help
+
 SHELL := /bin/bash
 
-.PHONY: clean examples tutorials
 
-clean: clean-pyc clean-build
+define PRINT_HELP_PYSCRIPT
+import re
+import sys
+
+target_pattern = re.compile(r"^([a-zA-Z1-9_-]+):.*?## (.*)$$")
+for line in sys.stdin:
+	match = target_pattern.match(line)
+	if match:
+		target, help = match.groups()
+		print(f"{target:<20} {help}")
+endef
+export PRINT_HELP_PYSCRIPT
+
+help:
+	@python -c "$$PRINT_HELP_PYSCRIPT" < $(MAKEFILE_LIST)
+
+clean: clean-pyc clean-build  ## Remove build artefacts
 
 clean-pyc:
 	find . -name '*.pyc' -exec rm -f {} +
@@ -17,7 +35,7 @@ clean-build:
 	find . -name '*.egg-info' -exec rm -fr {} +
 	find . -name '*.egg' -exec rm -f {} +
 
-examples:
+examples:  ## Run notebooks in plonine/examples/
 	export PYDEVD_DISABLE_FILE_VALIDATION=1; \
 	export PYTHONWARNINGS="ignore::FutureWarning::,ignore::DeprecationWarning::"; \
 	clean_notebook=$$(git rev-parse --show-toplevel)/tools/clean-notebook; \
@@ -30,7 +48,7 @@ examples:
 	   $$clean_notebook "$${file}" > "$${file}.$$$$" && mv "$${file}.$$$$" "$${file}"; \
 	done
 
-tutorials:
+tutorials:  ## Run notebooks in plonine/tutorials/
 	export PYDEVD_DISABLE_FILE_VALIDATION=1; \
 	export PYTHONWARNINGS="ignore::FutureWarning::,ignore::DeprecationWarning::"; \
 	clean_notebook=$$(git rev-parse --show-toplevel)/tools/clean-notebook; \
@@ -44,7 +62,7 @@ tutorials:
 	   $$clean_notebook "$${file}" > "$${file}.$$$$" && mv "$${file}.$$$$" "$${file}"; \
 	done
 
-changes:
+changes:  ## Run notebooks whose source has changed
 	export PYDEVD_DISABLE_FILE_VALIDATION=1; \
 	export PYTHONWARNINGS="ignore::FutureWarning::,ignore::DeprecationWarning::"; \
 	clean_notebook=$$(git rev-parse --show-toplevel)/tools/clean-notebook; \
@@ -61,4 +79,4 @@ changes:
 	   popd; \
 	done
 
-all: examples tutorials
+all: examples tutorials  ## Run all notebooks
