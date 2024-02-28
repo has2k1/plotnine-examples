@@ -35,6 +35,9 @@ clean-build:
 	find . -name '*.egg-info' -exec rm -fr {} +
 	find . -name '*.egg' -exec rm -f {} +
 
+gallery-tags:  ## List of unique tags gallery worthy output
+	@grep -Ehrao "# Gallery, \w+" plotnine_examples | sort | uniq
+
 examples:  ## Run notebooks in plonine/examples/
 	export PYDEVD_DISABLE_FILE_VALIDATION=1; \
 	export PYTHONWARNINGS="ignore::FutureWarning::,ignore::DeprecationWarning::"; \
