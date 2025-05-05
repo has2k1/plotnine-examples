@@ -20,7 +20,9 @@ classifiers = [
 ]
 
 dependencies = [
-   "geodatasets"
+   "plotnine[extra]",
+   "geodatasets>=2024.8.0",
+   "jupyter>=1.1.1",
 ]
 requires-python = ">=3.10"
 
